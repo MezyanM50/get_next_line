@@ -5,7 +5,7 @@ char *get_next_line(int fd)
     static char	*buffer;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > (size_t)-1)
 		return (NULL);
 	buffer = read_from_fd(fd,buffer); 
 	if (!buffer)
@@ -88,7 +88,7 @@ char	*clean(char *buf)
 	j = 0;
 	while (buf[i])
 		str[j++] = buf[i++];
-	free(buf);
 	str[j] = '\0';
+	free(buf);
 	return (str);
 }
