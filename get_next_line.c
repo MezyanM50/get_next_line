@@ -1,21 +1,23 @@
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    static char	*buffer;
+	static char	*buffer;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > (size_t)-1)
 		return (NULL);
-	buffer = read_from_fd(fd,buffer); 
+	buffer = read_from_fd(fd, buffer);
 	if (!buffer)
 		return (NULL);
 	line = extract_line(buffer);
 	buffer = clean(buffer);
+	if (line == NULL)
+		free(buffer);
 	return (line);
 }
 
-char	*read_from_fd(int fd,char *buf)
+char	*read_from_fd(int fd, char *buf)
 {
 	ssize_t	b;
 	char	*full_line;
@@ -24,15 +26,15 @@ char	*read_from_fd(int fd,char *buf)
 	full_line = (char *)malloc(BUFFER_SIZE + 1);
 	while (b != 0)
 	{
-		b = read(fd,full_line,BUFFER_SIZE);
+		b = read(fd, full_line, BUFFER_SIZE);
 		if (b == -1)
 		{
 			free(full_line);
 			return (NULL);
 		}
 		full_line[b] = '\0';
-		buf = ft_strjoin(buf,full_line);
-		if(check_newline(full_line))
+		buf = ft_strjoin(buf, full_line);
+		if (check_newline(full_line))
 			break ;
 	}
 	free(full_line);
@@ -42,18 +44,18 @@ char	*read_from_fd(int fd,char *buf)
 char	*extract_line(char *buf)
 {
 	int	i;
-	char *line;
+	char	*line;
 
 	i = 0;
 	if (!buf[i])
-		return NULL;
+		return (NULL);
 	while (buf[i] && buf[i] != '\n')
 		i++;
 	if (buf[i] && buf[i] == '\n')
 		i++;
 	line = malloc(i + 1);
 	if (!line)
-		return NULL;
+		return (NULL);
 	i = 0;
 	while (buf[i] && buf[i] != '\n')
 	{
@@ -70,10 +72,10 @@ char	*clean(char *buf)
 {
 	int	i;
 	int	j;
-	char *str;
-	
+	char	*str;
+
 	i = 0;
-	while(buf[i] && buf[i] != '\n')
+	while (buf[i] && buf[i] != '\n')
 		i++;
 	if (buf[i] && buf[i] == '\n')
 		i++;
