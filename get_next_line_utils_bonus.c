@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -46,7 +46,8 @@ char	*ft_strjoin(char *buf, char *full_line)
 	while (full_line[i] != '\0')
 		str[j++] = full_line[i++];
 	str[j] = '\0';
-	free(buf);
+	if (buf)
+		free(buf);
 	return (str);
 }
 

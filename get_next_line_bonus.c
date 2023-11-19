@@ -1,19 +1,19 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[1024];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > (size_t)-1)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > (size_t)-1 || fd > 1024)
 		return (NULL);
-	buffer = read_from_fd(fd, buffer);
-	if (!buffer)
+	buffer[fd] = read_from_fd(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	line = extract_line(buffer);
-	buffer = clean(buffer);
+	line = extract_line(buffer[fd]);
+	buffer[fd] = clean(buffer[fd]);
 	if (line == NULL)
-		free(buffer);
+		free(buffer[fd]);
 	return (line);
 }
 
@@ -79,7 +79,7 @@ char	*clean(char *buf)
 		i++;
 	if (buf[i] && buf[i] == '\n')
 		i++;
-	if (buf[i] == '\0')
+	if (!buf[i])
 	{
 		free(buf);
 		return (NULL);
@@ -93,19 +93,4 @@ char	*clean(char *buf)
 	str[j] = '\0';
 	free(buf);
 	return (str);
-}
-#include <fcntl.h>
-#include <stdio.h>
-int main()
-{
-	int fd = open("test",O_RDONLY);
-	char *str = get_next_line(fd);
-	while (1)
-	{
-		if (str == NULL)
-			break;
-		printf("%s",str);
-		str = get_next_line(fd);
-	}
-	system("leaks a.out");
 }
