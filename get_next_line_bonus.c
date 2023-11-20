@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmezyan <mmezyan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 12:04:00 by mmezyan           #+#    #+#             */
+/*   Updated: 2023/11/20 12:15:32 by mmezyan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
@@ -43,7 +55,7 @@ char	*read_from_fd(int fd, char *buf)
 
 char	*extract_line(char *buf)
 {
-	int	i;
+	int		i;
 	char	*line;
 
 	i = 0;
@@ -70,8 +82,8 @@ char	*extract_line(char *buf)
 
 char	*clean(char *buf)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	i = 0;

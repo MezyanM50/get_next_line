@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmezyan <mmezyan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 12:04:25 by mmezyan           #+#    #+#             */
+/*   Updated: 2023/11/20 12:14:57 by mmezyan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
@@ -14,7 +26,7 @@ int	ft_strjoin_len(char *buf, char *full_line)
 {
 	int	total_len;
 
-	total_len = 0;	
+	total_len = 0;
 	if (!buf)
 		total_len = ft_strlen(full_line);
 	else
@@ -25,9 +37,9 @@ int	ft_strjoin_len(char *buf, char *full_line)
 char	*ft_strjoin(char *buf, char *full_line)
 {
 	char		*str;
-	int		i;
-	int		j;
-	int		total_len;
+	int			i;
+	int			j;
+	int			total_len;
 
 	if (!full_line)
 		return (NULL);

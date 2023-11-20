@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmezyan <mmezyan@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 12:03:12 by mmezyan           #+#    #+#             */
+/*   Updated: 2023/11/20 12:09:50 by mmezyan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 char	*get_next_line(int fd)
@@ -43,7 +55,7 @@ char	*read_from_fd(int fd, char *buf)
 
 char	*extract_line(char *buf)
 {
-	int	i;
+	int		i;
 	char	*line;
 
 	i = 0;
@@ -70,8 +82,8 @@ char	*extract_line(char *buf)
 
 char	*clean(char *buf)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	i = 0;
@@ -93,19 +105,4 @@ char	*clean(char *buf)
 	str[j] = '\0';
 	free(buf);
 	return (str);
-}
-#include <fcntl.h>
-#include <stdio.h>
-int main()
-{
-	int fd = open("test",O_RDONLY);
-	char *str = get_next_line(fd);
-	while (1)
-	{
-		if (str == NULL)
-			break;
-		printf("%s",str);
-		str = get_next_line(fd);
-	}
-	system("leaks a.out");
 }
