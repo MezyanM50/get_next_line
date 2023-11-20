@@ -6,7 +6,7 @@
 /*   By: mmezyan <mmezyan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:03:48 by mmezyan           #+#    #+#             */
-/*   Updated: 2023/11/20 12:12:46 by mmezyan          ###   ########.fr       */
+/*   Updated: 2023/11/20 12:17:19 by mmezyan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE
+#  define BUFFER_SIZE 1
 # endif
 
 char	*ft_strjoin(char *buf, char *full_line);
